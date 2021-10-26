@@ -27,10 +27,10 @@ public class TesteQueueProdutor {
 		MessageProducer producer = session.createProducer(fila);
 
 		
-		//Message message = session.createTextMessage("DEBUG | Apache ActiveMQ 5.12.0 (localhost, ID:vostro-5470-46665-1634672281218-0:1) is starting");
-		//Message message = session.createTextMessage("INFO | Apache ActiveMQ 5.12.0 (localhost, ID:vostro-5470-46665-1634672281218-0:1) is starting");
-		//Message message = session.createTextMessage("WARN | Apache ActiveMQ 5.12.0 (localhost, ID:vostro-5470-46665-1634672281218-0:1) is starting");
-		//Message message = session.createTextMessage("ERROR | Apache ActiveMQ 5.12.0 (localhost, ID:vostro-5470-46665-1634672281218-0:1) is starting");
+		//Message message = session.createTextMessage("DEBUG | Apache ActiveMQ 5.12.0 (localhost, ID:46665-1634672281218-0:1) is starting");
+		//Message message = session.createTextMessage("INFO | Apache ActiveMQ 5.12.0 (localhost, ID:46665-1634672281218-0:1) is starting");
+		//Message message = session.createTextMessage("WARN | Apache ActiveMQ 5.12.0 (localhost, ID:46665-1634672281218-0:1) is starting");
+		//Message message = session.createTextMessage("ERROR | Apache ActiveMQ 5.12.0 (localhost, ID:46665-1634672281218-0:1) is starting");
 		
 		// A prioridade vai de 0 a 9.
 		// DEBUG deve ter a prioridade 	- 0;
@@ -39,14 +39,14 @@ public class TesteQueueProdutor {
 		// ERROR deve ter a prioridade 	- 9;
 		
 		/*
-		Para que o ActiveMQ ordene as mensagens por ordem de prioridade informado no método send, é preciso adicionar essa configuração no arquivo: conf/activemq.zml
+		Para que o ActiveMQ ordene as mensagens por ordem de prioridade informado no método send, é preciso adicionar essa configuração no arquivo: conf/activemq.xml
 		<policyEntry queue=">" prioritizedMessages="true"/>
 		*/
 		
 		Message message = session.createTextMessage("DEBUG | Apache ActiveMQ 5.12.0 (localhost, ID:vostro-5470-46665-1634672281218-0:1) is starting");
 		// O DeliveryMode configura se a mensagem deve sobreviver ao desligamento do ActiveMQ
 		// O terceiro parâmetro informa o valor da prioridade da mensagem
-		// O Quarto parâmetro informa o tempo de vida da mensagem antes de ser removida da fila de mensagens, caso ainda não tenha sido entregue
+		// O quarto parâmetro informa o tempo de vida da mensagem antes de ser removida da fila de mensagens, caso ainda não tenha sido entregue
 		producer.send(message, DeliveryMode.NON_PERSISTENT, 3, 60_000L);
 
 		session.close();
